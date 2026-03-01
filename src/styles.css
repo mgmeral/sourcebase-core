@@ -1,0 +1,191 @@
+:root {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  color: #1b1f2a;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: #f1f3f7; }
+
+.app-shell { min-height: 100vh; }
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: #fff;
+  border-bottom: 1px solid #d7dce6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 30;
+}
+.header-left { display: flex; align-items: center; gap: 10px; }
+.brand { font-weight: 700; }
+.hamburger { display: none; }
+
+.header-right { display: flex; align-items: center; gap: 8px; }
+.role-select, select, input {
+  border: 1px solid #c9ced8;
+  border-radius: 8px;
+  padding: 8px;
+  background: #fff;
+}
+.role-badge { font-size: 12px; color: #50586b; }
+
+.sidebar {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: 200px;
+  bottom: 0;
+  background: #fff;
+  border-right: 1px solid #d7dce6;
+  padding: 12px;
+  z-index: 20;
+}
+.nav-link {
+  display: block;
+  margin-bottom: 6px;
+  text-decoration: none;
+  color: #1b1f2a;
+  padding: 10px;
+  border-radius: 8px;
+}
+.nav-link.active { background: #e5edff; color: #1f4acb; font-weight: 600; }
+
+.main-content {
+  margin-top: 56px;
+  margin-left: 200px;
+  padding: 16px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e1e5ee;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.card-header { display: flex; justify-content: space-between; align-items: center; }
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { border-bottom: 1px solid #eceff6; padding: 10px; text-align: left; }
+
+.btn {
+  background: #1f4acb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.btn.small { padding: 6px 10px; }
+.btn.ghost { background: #ebeff8; color: #1b1f2a; }
+.btn.danger { background: #c73434; }
+.error { color: #b31313; }
+
+.form { display: grid; gap: 10px; }
+.form label { display: grid; gap: 6px; font-size: 14px; }
+.actions-end { display: flex; justify-content: flex-end; gap: 8px; }
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 24, 36, 0.45);
+  display: grid;
+  place-items: center;
+  z-index: 40;
+}
+.modal {
+  width: min(540px, calc(100vw - 24px));
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+}
+.modal-header { display: flex; justify-content: space-between; align-items: center; }
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  align-items: end;
+}
+.routes-page .route-columns {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 65% 35%;
+}
+.route-list { display: grid; gap: 8px; }
+.route-item {
+  text-align: left;
+  border: 1px solid #dbe2f0;
+  background: #f9fbff;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: grid;
+}
+.route-item.selected { border-color: #1f4acb; background: #edf2ff; }
+
+.timeline {
+  position: relative;
+  margin-left: 8px;
+  padding-left: 18px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 4px;
+  bottom: 4px;
+  border-left: 2px dotted #b6bfce;
+}
+.timeline-item { display: flex; gap: 10px; margin-bottom: 10px; position: relative; }
+.timeline-marker {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #1f4acb;
+  background: #fff;
+  margin-top: 3px;
+  position: relative;
+  left: -19px;
+}
+.timeline-content small { color: #59647c; }
+.timeline-content .emph { font-weight: 700; }
+
+.backdrop { display: none; }
+
+@media (max-width: 900px) {
+  .filters-grid { grid-template-columns: 1fr; }
+  .routes-page .route-columns { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .hamburger {
+    display: inline-flex;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+
+  .sidebar.open { transform: translateX(0); }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 56px 0 0 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+  }
+
+  .main-content { margin-left: 0; }
+}
